@@ -1,0 +1,6 @@
+upgrade_id,name,desc,icon_path,max_level,base_value,value_per_level,base_cost,cost_growth,value_type,stat_target,name_key,desc_key
+10001,스킬 쿨타임 감소,스킬의 쿨타임이 감소됩니다.(영혼스킬 제외),,3,0.1,0.05,300,0.1,Sum,104,GROW_UPGRADE_NAME_10001,GROW_UPGRADE_DESC_10001
+10002,최대 체력 증가,캐릭터의 최대 체력이 증가합니다.,,3,20,10,300,0.1,Sum,102,GROW_UPGRADE_NAME_10002,GROW_UPGRADE_DESC_10002
+10003,대시 쿨타임 감소,대시의 재사용 대기시간이 줄어듭니다.,,3,0.3,0.2,300,0.1,Sum,109,GROW_UPGRADE_NAME_10003,GROW_UPGRADE_DESC_10003
+10004,소울 획득량 증가,적 처치 시 얻는 소울 포인트가 증가합니다.,,3,0.2,0.1,300,0.1,Mul,403,GROW_UPGRADE_NAME_10004,GROW_UPGRADE_DESC_10004
+10005,희귀 강화 등장률 증가,전직 또는 희귀 강화 선택지의 등장 확률이 증가합니다.,,3,0.05,0.03,400,0.15,Sum,110,GROW_UPGRADE_NAME_10005,GROW_UPGRADE_DESC_10005
