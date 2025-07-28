@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[System.Serializable]
 public struct SynergyTagData
 {
     public int tag;                 // (Enum) SynergyTag
@@ -18,8 +17,7 @@ public struct SynergyTagData
     public string descKey;
 }
 
-[System.Serializable]
-public struct ItemCSV
+public struct ItemInfo
 {
     public int id;
     public string name;
@@ -41,7 +39,6 @@ public struct ItemCSV
     public string descKey;
 }
 
-[System.Serializable]
 public struct GrowthUpgrade
 {
     public int id;
@@ -57,4 +54,41 @@ public struct GrowthUpgrade
     public int statTarget;  // (Enum) EffectType;
     public string nameKey;
     public string descKey;
+}
+
+public struct JopInfo
+{
+    public int id;              // (Enum) JopType
+    public string name;
+    public string desc;
+    public float defaultHP;
+    public float defaultATK;
+    public string note;
+    public string nameKey;
+    public string descKey;
+}
+
+public struct JopSkill
+{
+    public int id;              // (Enum) JopType
+    public int slot;
+    public int upgradeStage;    // (Enum) JopUpgrade
+    public string name;
+    public string desc;
+    public int rangeType;       // (Enum) RangeType
+    public int damageType;      // (Enum) DamageType
+    public float cooldown;
+    public string note;
+    public string nameKey;
+    public string descKey;
+}
+
+public struct JopUpgradeInfo
+{
+    public int id;                  // (Enum) JopType
+    public int upgradeStage;
+    public string effectDesc1;
+    public string effectDesc2;
+    public string effectDesc1Key;
+    public string effectDesc2Key;
 }

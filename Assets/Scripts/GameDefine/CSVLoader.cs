@@ -4,12 +4,18 @@ using UnityEngine;
 public class CSVLoader : MonoBehaviour
 {
     private const string SynergyTagPath = "CSV/synergy_tags";
-    private const string ItemListPath = "CSV/item_list";
+    private const string ItemInfoPath = "CSV/item_list";
     private const string GrowthUpgradePath = "CSV/growth_upgrade";
+    private const string JopInfoPath = "CSV/jop_list";
+    private const string JopSkillPath = "CSV/jop_skill";
+    private const string JopUpgradePath = "CSV/jop_upgrade";
 
     public static Dictionary<int, SynergyTagData> SynergyTagDict = new();
-    public static Dictionary<int, ItemCSV> ItemCSVDict = new();
+    public static Dictionary<int, ItemInfo> ItemInfoDict = new();
     public static Dictionary<int, GrowthUpgrade> GrowthUpgradeDict = new();
+    public static Dictionary<int, JopInfo> JopInfoDict = new();
+    public static Dictionary<int, JopSkill> JopSkillDict = new();
+    public static Dictionary<int, JopUpgradeInfo> JopUpgradeInfoDict = new();
 
     private void Awake()
     {
@@ -31,8 +37,6 @@ public class CSVLoader : MonoBehaviour
         }
         return asset.text;
     }
-
-    #region Load
 
     #region SynergyTag
     public static void LoadSynergyTag()
@@ -87,12 +91,12 @@ public class CSVLoader : MonoBehaviour
     #region ItemList
     public static void LoadItem()
     {
-        var csv = LoadCSV(ItemListPath);
+        var csv = LoadCSV(ItemInfoPath);
 
         if (string.IsNullOrEmpty(csv))
             return;
 
-        ItemCSVDict.Clear();
+        ItemInfoDict.Clear();
 
         string[] lines = csv.Split('\n');
 
@@ -104,7 +108,7 @@ public class CSVLoader : MonoBehaviour
 
             string[] values = line.Split(",");
 
-            ItemCSV data = new ItemCSV();
+            ItemInfo data = new ItemInfo();
 
             data.id = int.Parse(values[0]);
             data.name = values[1];
@@ -127,9 +131,9 @@ public class CSVLoader : MonoBehaviour
 
             int key = data.id;
 
-            if (!ItemCSVDict.ContainsKey(key))
+            if (!ItemInfoDict.ContainsKey(key))
             {
-                ItemCSVDict.Add(key, data);
+                ItemInfoDict.Add(key, data);
             }
             else
             {
@@ -189,5 +193,137 @@ public class CSVLoader : MonoBehaviour
     }
     #endregion
 
+    #region JopInfo
+    public static void LoadJopInfo()
+    {
+        var csv = LoadCSV(JopInfoPath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        JopInfoDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            JopInfo data = new JopInfo();
+
+            data.id = int.Parse(values[0]);
+            data.name = values[1];
+            data.desc = values[2];
+            data.defaultHP = float.Parse(values[3]);
+            data.defaultATK = float.Parse(values[4]);
+            data.nameKey = values[5];
+            data.descKey = values[6];
+
+            int key = data.id;
+
+            if (!JopInfoDict.ContainsKey(key))
+            {
+                JopInfoDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"JopInfoDict 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
+    #endregion
+
+    #region JopSkill
+    public static void LoadJopSkill()
+    {
+        var csv = LoadCSV(JopSkillPath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        JopSkillDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            JopSkill data = new JopSkill();
+
+            data.id = int.Parse(values[0]);
+            data.slot = int.Parse(values[1]);
+            data.upgradeStage = int.Parse(values[2]);
+            data.name = values[3];
+            data.desc = values[4];
+            data.rangeType = int.Parse(values[5]);
+            data.damageType = int.Parse(values[6]);
+            data.cooldown = float.Parse(values[7]);
+            data.nameKey = values[8];
+            data.descKey = values[9];
+
+            int key = data.id;
+
+            if (!JopSkillDict.ContainsKey(key))
+            {
+                JopSkillDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"JopInfoDict 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
+    #endregion
+
+    #region JopUpgrade
+    public static void LoadJopUpgrade()
+    {
+        var csv = LoadCSV(JopUpgradePath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        JopUpgradeInfoDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            JopUpgradeInfo data = new JopUpgradeInfo();
+
+            data.id = int.Parse(values[0]);
+            data.upgradeStage = int.Parse(values[1]);
+            data.effectDesc1 = values[2];
+            data.effectDesc2 = values[3];
+            data.effectDesc1Key = values[4];
+            data.effectDesc2Key = values[5];
+
+            int key = data.id;
+
+            if (!JopUpgradeInfoDict.ContainsKey(key))
+            {
+                JopUpgradeInfoDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"JopInfoDict 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
     #endregion
 }

@@ -1,0 +1,5 @@
+﻿jop_id,name,description,defualt_hp,default_atk,name_key,desc_key,note
+101,전사,근접 돌진과 광역에 특화,150,20,JOP_NAME_WAR,JOP_DESC_WAR,
+201,마법사,원거리 범위 마법에 특화,100,30,JOP_NAME_MAG,JOP_DESC_MAG,
+301,도적,고기동 단일 암살에 특화,120,25,JOP_NAME_ROG,JOP_DESC_ROG,
+401,궁수,원거리 연사와 강력한 한방에 특화,100,22,JOP_NAME_ARC,JOP_DESC_ARC,
