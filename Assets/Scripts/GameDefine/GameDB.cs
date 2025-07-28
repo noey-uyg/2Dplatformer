@@ -92,3 +92,41 @@ public struct JopUpgradeInfo
     public string effectDesc1Key;
     public string effectDesc2Key;
 }
+
+public struct MonsterInfo
+{
+    public int id;
+    public string name;
+    public int monsterType;
+    public int baseAtkType;
+    public int moveType;
+    public int bodyHitDam;
+    public float baseHp;
+    public float baseAtk;
+    public float atkCD;
+    public string nameKey;
+    public string note;
+}
+
+public struct MonsterPattern
+{
+    public int id;
+    public int patternNo;
+    public float cooldown;
+    public int rangeType;
+    public int effectType;
+    public float effectValue;
+    public float duration;
+    public int condition;
+    public float conditionValue;
+    public int phase;
+    public string note;
+}
+
+public struct MonsterPhase
+{
+    public int id;
+    public int phase;
+    public float changeHP;
+    public string note;
+}
