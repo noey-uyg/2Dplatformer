@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public static class GameDefine
@@ -148,5 +149,16 @@ public static class GameDefine
         None,
         Passive = 1,    // ÆÐ½Ãºê
         Active = 2,     // ¾×Æ¼ºê
+    }
+
+    /// <summary>
+    /// ¸Ê Å¸ÀÔ
+    /// </summary>
+    public enum MapType
+    {
+        None,
+        Normal = 1, // ÀÏ¹Ý ¸Ê
+        Hidden = 2, // È÷µç ¸Ê
+        Boss = 3,   // º¸½º ¸Ê
     }
 }

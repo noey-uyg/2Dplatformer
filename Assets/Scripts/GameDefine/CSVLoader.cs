@@ -12,6 +12,11 @@ public class CSVLoader : MonoBehaviour
     private const string MonsterListPath = "CSV/monster_list";
     private const string MonsterPatternPath = "CSV/monster_pattern";
     private const string MonsterPhasePath = "CSV/monster_phase";
+    private const string MapListPath = "CSV/map_list";
+    private const string MonsterSpawnPath = "CSV/monster_spawn";
+    private const string SoulInfoPath = "CSV/soul_list";
+    private const string SoulSkillPath = "CSV/soul_skill";
+    private const string SoulUpgradePath = "CSV/soul_upgrade";
 
     public static Dictionary<int, SynergyTagData> SynergyTagDict = new();
     public static Dictionary<int, ItemInfo> ItemInfoDict = new();
@@ -22,6 +27,11 @@ public class CSVLoader : MonoBehaviour
     public static Dictionary<int, MonsterInfo> MonsterInfoDict = new();
     public static Dictionary<int, MonsterPattern> MonsterPatternDict = new();
     public static Dictionary<int, MonsterPhase> MonsterPhaseDict = new();
+    public static Dictionary<int, MapInfo> MapInfoDict = new();
+    public static Dictionary<int, MonsterSpawn> MonsterSpawnDict = new();
+    public static Dictionary<int, SoulInfo> SoulInfoDict = new();
+    public static Dictionary<int, SoulSkill> SoulSkillDict = new();
+    public static Dictionary<int, SoulUpgrade> SoulUpgradeDict = new();
 
     private void Awake()
     {
@@ -39,6 +49,11 @@ public class CSVLoader : MonoBehaviour
         LoadMonsterInfo();
         LoadMonsterPattern();
         LoadMonsterPhase();
+        LoadMapInfo();
+        LoadMonsterSpawn();
+        LoadSoulInfo();
+        LoadSoulSkill();
+        LoadSoulUpgrade();
     }
 
     public static string LoadCSV(string path)
@@ -368,7 +383,7 @@ public class CSVLoader : MonoBehaviour
             data.monsterType = int.Parse(values[2]);
             data.baseAtkType = int.Parse(values[3]);
             data.moveType = int.Parse(values[4]);
-            data.bodyHitDam = int.Parse(values[5]);
+            data.bodyHitDam = int.Parse(values[5]) > 0 ? true : false;
             data.baseHp = float.Parse(values[6]);
             data.baseAtk = float.Parse(values[7]);
             data.atkCD = float.Parse(values[8]);
@@ -435,7 +450,6 @@ public class CSVLoader : MonoBehaviour
     }
     #endregion
 
-
     #region MonsterPhase
     public static void LoadMonsterPhase()
     {
@@ -475,4 +489,215 @@ public class CSVLoader : MonoBehaviour
         }
     }
     #endregion
+
+    #region MapInfo
+    public static void LoadMapInfo()
+    {
+        var csv = LoadCSV(MapListPath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        MapInfoDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            MapInfo data = new MapInfo();
+
+            data.mapID = int.Parse(values[0]);
+            data.stageID = int.Parse(values[1]);
+            data.mapType = int.Parse(values[2]);
+            data.mapPrefabName = values[3];
+            data.isHidden = int.Parse(values[4]) > 0 ? true : false;
+            data.prefabPath = values[5];
+
+            int key = data.mapID;
+
+            if (!MapInfoDict.ContainsKey(key))
+            {
+                MapInfoDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"MapInfo 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
+    #endregion
+
+    #region MonsterSpawn
+    public static void LoadMonsterSpawn()
+    {
+        var csv = LoadCSV(MonsterSpawnPath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        MonsterSpawnDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            MonsterSpawn data = new MonsterSpawn();
+
+            data.mapID = int.Parse(values[0]);
+            data.spawnID = int.Parse(values[1]);
+            data.monsterID = int.Parse(values[2]);
+            data.level = int.Parse(values[3]);
+
+            int key = data.mapID * 100 + data.spawnID;
+
+            if (!MonsterSpawnDict.ContainsKey(key))
+            {
+                MonsterSpawnDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"MapInfo 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
+    #endregion
+
+    #region SoulInfo
+    public static void LoadSoulInfo()
+    {
+        var csv = LoadCSV(SoulInfoPath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        SoulInfoDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            SoulInfo data = new SoulInfo();
+
+            data.id = int.Parse(values[0]);
+            data.name = values[1];
+            data.desc = values[2];
+            data.nameKey = values[3];
+            data.descKey = values[4];
+
+            int key = data.id;
+
+            if (!SoulInfoDict.ContainsKey(key))
+            {
+                SoulInfoDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"SoulInfo 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
+    #endregion
+
+    #region SoulSkill
+    public static void LoadSoulSkill()
+    {
+        var csv = LoadCSV(SoulSkillPath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        SoulSkillDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            SoulSkill data = new SoulSkill();
+
+            data.id = int.Parse(values[0]);
+            data.name = values[1];
+            data.desc = values[2];
+            data.cooldown = float.Parse(values[3]);
+            data.nameKey = values[4];
+            data.descKey = values[5];
+
+            int key = data.id;
+
+            if (!SoulSkillDict.ContainsKey(key))
+            {
+                SoulSkillDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"SoulSkill 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
+    #endregion
+
+    #region SoulUpgrade
+    public static void LoadSoulUpgrade()
+    {
+        var csv = LoadCSV(SoulUpgradePath);
+
+        if (string.IsNullOrEmpty(csv))
+            return;
+
+        SoulUpgradeDict.Clear();
+
+        string[] lines = csv.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string line = lines[i].Trim();
+
+            if (string.IsNullOrEmpty(line)) continue;
+
+            string[] values = line.Split(",");
+
+            SoulUpgrade data = new SoulUpgrade();
+
+            data.id = int.Parse(values[0]);
+            data.upgradeID = int.Parse(values[1]);
+            data.desc = values[2];
+            data.descKey = values[3];
+
+            int key = data.id * 10 + data.upgradeID;
+
+            if (!SoulUpgradeDict.ContainsKey(key))
+            {
+                SoulUpgradeDict.Add(key, data);
+            }
+            else
+            {
+                Debug.LogWarning($"SoulUpgrade 중복된 키 : {key} (줄 {i + 1})");
+            }
+        }
+    }
+    #endregion
+
 }
