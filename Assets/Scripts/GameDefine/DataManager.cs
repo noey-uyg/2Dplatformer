@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CSVLoader : MonoBehaviour
+public class DataManager : MonoBehaviour
 {
+    #region Path
     private const string SynergyTagPath = "CSV/synergy_tags";
     private const string ItemInfoPath = "CSV/item_list";
     private const string GrowthUpgradePath = "CSV/growth_upgrade";
@@ -17,7 +18,9 @@ public class CSVLoader : MonoBehaviour
     private const string SoulInfoPath = "CSV/soul_list";
     private const string SoulSkillPath = "CSV/soul_skill";
     private const string SoulUpgradePath = "CSV/soul_upgrade";
+    #endregion
 
+    #region Dict
     public static Dictionary<int, SynergyTagData> SynergyTagDict = new();
     public static Dictionary<int, ItemInfo> ItemInfoDict = new();
     public static Dictionary<int, GrowthUpgrade> GrowthUpgradeDict = new();
@@ -32,6 +35,7 @@ public class CSVLoader : MonoBehaviour
     public static Dictionary<int, SoulInfo> SoulInfoDict = new();
     public static Dictionary<int, SoulSkill> SoulSkillDict = new();
     public static Dictionary<int, SoulUpgrade> SoulUpgradeDict = new();
+    #endregion
 
     private void Awake()
     {
@@ -39,7 +43,7 @@ public class CSVLoader : MonoBehaviour
     }
 
     public static void AllCSVLoad()
-    {
+    {         
         LoadSynergyTag();
         LoadItem();
         LoadGrowthUpgrade();
@@ -264,6 +268,19 @@ public class CSVLoader : MonoBehaviour
             }
         }
     }
+
+    public static JopInfo GetJopInfo(int id)
+    {
+        if (JopInfoDict.TryGetValue(id, out JopInfo jopData))
+        {
+            return jopData;
+        }
+
+        Debug.LogError($"Key not found [JopInfo] {id}");
+
+        return jopData;
+    }
+
     #endregion
 
     #region JopSkill
@@ -299,8 +316,7 @@ public class CSVLoader : MonoBehaviour
             data.nameKey = values[8];
             data.descKey = values[9];
 
-            int key = data.id * 100 + data.slot;
-
+            int key = (data.id * 10000) + (data.slot * 100) + data.upgradeStage;
             if (!JopSkillDict.ContainsKey(key))
             {
                 JopSkillDict.Add(key, data);
@@ -310,6 +326,27 @@ public class CSVLoader : MonoBehaviour
                 Debug.LogWarning($"JopInfoDict 중복된 키 : {key} (줄 {i + 1})");
             }
         }
+    }
+
+    public static List<JopSkill> GetJopSkills(int jopID, int upgradeStage)
+    {
+        List<JopSkill> jopSkills = new List<JopSkill>();
+
+        // 슬롯이 2개로 정해져 있기 때문에
+        for(int i = 1; i <= 2; i++)
+        {
+            int key = (jopID * 10000) + (i*100) + upgradeStage;
+
+            if(!JopSkillDict.ContainsKey(key))
+            {
+                Debug.LogError($"Key not found [JopSkill] {jopID}");
+                return null;
+            }
+
+            jopSkills.Add(JopSkillDict[key]);
+        }
+
+        return jopSkills;
     }
     #endregion
 
