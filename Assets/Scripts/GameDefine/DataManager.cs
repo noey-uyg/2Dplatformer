@@ -278,7 +278,7 @@ public class DataManager : MonoBehaviour
 
         Debug.LogError($"Key not found [JopInfo] {id}");
 
-        return jopData;
+        return null;
     }
 
     #endregion
@@ -379,7 +379,7 @@ public class DataManager : MonoBehaviour
             data.effectDesc1Key = values[4];
             data.effectDesc2Key = values[5];
 
-            int key = data.id;
+            int key = data.id * 100 + data.upgradeStage;
 
             if (!JopUpgradeInfoDict.ContainsKey(key))
             {
@@ -390,6 +390,20 @@ public class DataManager : MonoBehaviour
                 Debug.LogWarning($"JopInfoDict 중복된 키 : {key} (줄 {i + 1})");
             }
         }
+    }
+
+    public static JopUpgradeInfo GetJopUpgrade(int jopID, int upgradeStage)
+    {
+        int key = jopID * 100 + upgradeStage;
+
+        if (JopUpgradeInfoDict.TryGetValue(key, out JopUpgradeInfo data))
+        {
+            return data;
+        }
+
+        Debug.LogError($"Key not found [JopUpgrade] {jopID}");
+
+        return null;
     }
     #endregion
 

@@ -1,7 +1,7 @@
 using System.Diagnostics.Tracing;
 using UnityEngine;
 
-public struct SynergyTagData
+public class SynergyTagData
 {
     public int tag;                 // (Enum) SynergyTag, 시너지 기본 번호
     public string name;             // 시너지 이름
@@ -18,7 +18,7 @@ public struct SynergyTagData
     public string descKey;          // 로컬라이징 키
 }
 
-public struct ItemInfo
+public class ItemInfo
 {
     public int id;                  // 아이템 기본 번호
     public string name;             // 아이템 이름
@@ -40,7 +40,7 @@ public struct ItemInfo
     public string descKey;          // 로컬라이징 키
 }
 
-public struct GrowthUpgrade
+public class GrowthUpgrade
 {
     public int id;                  // 성장 특성 번호
     public string name;             // 이름
@@ -57,7 +57,7 @@ public struct GrowthUpgrade
     public string descKey;          // 로컬라이징 키
 }
 
-public struct JopInfo
+public class JopInfo
 {
     public int id;              // (Enum) JopType 직업 번호
     public string name;         // 이름
@@ -69,7 +69,7 @@ public struct JopInfo
     public string descKey;      // 로컬라이징 키
 }
 
-public struct JopSkill
+public class JopSkill
 {
     public int id;              // (Enum) JopType 직업 번호
     public int slot;            // 스킬 슬롯
@@ -84,7 +84,7 @@ public struct JopSkill
     public string descKey;      // 로컬라이징 키
 }
 
-public struct JopUpgradeInfo
+public class JopUpgradeInfo
 {
     public int id;                  // (Enum) JopType 직업 번호
     public int upgradeStage;        // 전직 단계
@@ -94,7 +94,7 @@ public struct JopUpgradeInfo
     public string effectDesc2Key;   // 로컬라이징 키
 }
 
-public struct MonsterInfo
+public class MonsterInfo
 {
     public int id;              // 몬스터 아이디
     public string name;         // 몬스터 이름
@@ -109,7 +109,7 @@ public struct MonsterInfo
     public string note;
 }
 
-public struct MonsterPattern
+public class MonsterPattern
 {
     public int id;                  // 몬스터 아이디
     public int patternNo;           // 패턴 번호
@@ -124,7 +124,7 @@ public struct MonsterPattern
     public string note;
 }
 
-public struct MonsterPhase
+public class MonsterPhase
 {
     public int id;          // 몬스터 번호
     public int phase;       // 페이즈
@@ -132,7 +132,7 @@ public struct MonsterPhase
     public string note;
 }
 
-public struct MapInfo
+public class MapInfo
 {
     public int mapID;               // 맵 번호
     public int stageID;             // 스테이지
@@ -142,7 +142,7 @@ public struct MapInfo
     public string prefabPath;       // 프리팹 주소
 }
 
-public struct MonsterSpawn
+public class MonsterSpawn
 {
     public int mapID;       // 맵 번호
     public int spawnID;     // 맵 스폰 위치 인덱스
@@ -150,7 +150,7 @@ public struct MonsterSpawn
     public int level;       // 몬스터 레벨
 }
 
-public struct SoulInfo
+public class SoulInfo
 {
     public int id;
     public string name;
@@ -159,7 +159,7 @@ public struct SoulInfo
     public string descKey;
 }
 
-public struct SoulSkill
+public class SoulSkill
 {
     public int id;
     public string name;
@@ -169,7 +169,7 @@ public struct SoulSkill
     public string descKey;
 }
 
-public struct SoulUpgrade
+public class SoulUpgrade
 {
     public int id;
     public int upgradeID;
