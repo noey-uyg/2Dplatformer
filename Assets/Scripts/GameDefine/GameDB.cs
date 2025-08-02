@@ -79,9 +79,9 @@ public class JopSkill
     public int rangeType;       // (Enum) RangeType 범위 타입
     public int damageType;      // (Enum) DamageType 데미지 타입
     public float cooldown;      // 스킬 쿨타임
-    public string note;
     public string nameKey;      // 로컬라이징 키
     public string descKey;      // 로컬라이징 키
+    public string className;    // 스킬 클래스 이름
 }
 
 public class JopUpgradeInfo

@@ -9,6 +9,6 @@ public class JopSelectButton : MonoBehaviour
 
     public void SelectButtonClick()
     {
-        PlayerData.SetJop(_jopID);
+        PlayerController.Instance.SetJop(_jopID);
     }
 }

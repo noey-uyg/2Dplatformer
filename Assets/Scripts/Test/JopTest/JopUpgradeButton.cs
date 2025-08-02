@@ -6,6 +6,6 @@ public class JopUpgradeButton : MonoBehaviour
 {
     public void PromotionButtonClick()
     {
-        PlayerData.Promotion();
+        PlayerController.Instance.Promotion();
     }
 }

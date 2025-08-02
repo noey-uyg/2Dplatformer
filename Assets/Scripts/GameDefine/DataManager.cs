@@ -315,6 +315,7 @@ public class DataManager : MonoBehaviour
             data.cooldown = float.Parse(values[7]);
             data.nameKey = values[8];
             data.descKey = values[9];
+            data.className = values[10];
 
             int key = (data.id * 10000) + (data.slot * 100) + data.upgradeStage;
             if (!JopSkillDict.ContainsKey(key))
