@@ -39,6 +39,9 @@ public class PlayerController : Singleton<PlayerController>
         LoadCurrentJopSkill();
     }
 
+    /// <summary>
+    /// 직업 스킬 불러오기
+    /// </summary>
     private void LoadCurrentJopSkill()
     {
         var jopSkills = DataManager.GetJopSkills(
@@ -47,5 +50,22 @@ public class PlayerController : Singleton<PlayerController>
 
         PlayerData.SetJopSkill(jopSkills);
         _skillManager.LoadPlayerSkills(jopSkills);
+    }
+
+    /// <summary>
+    /// 영혼 선택
+    /// </summary>
+    public void SetSoul(int id)
+    {
+        var soulInfo = DataManager.GetSoulInfo(id);
+
+        if(soulInfo == null)
+            return;
+
+        var skill = DataManager.GetSoulSkill(id);
+
+        Debug.Log($"선택 : {soulInfo.name} 영혼의 스킬은 {skill.name}");
+        PlayerData.SetSoul(soulInfo);
+        PlayerData.SetSoulSkill(skill);
     }
 }

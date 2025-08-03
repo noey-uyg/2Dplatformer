@@ -666,6 +666,18 @@ public class DataManager : MonoBehaviour
             }
         }
     }
+
+    public static SoulInfo GetSoulInfo(int id)
+    {
+        if (SoulInfoDict.TryGetValue(id, out SoulInfo soulData))
+        {
+            return soulData;
+        }
+
+        Debug.LogError($"Key not found [SoulInfo] {id}");
+
+        return null;
+    }
     #endregion
 
     #region SoulSkill
@@ -708,6 +720,18 @@ public class DataManager : MonoBehaviour
                 Debug.LogWarning($"SoulSkill 중복된 키 : {key} (줄 {i + 1})");
             }
         }
+    }
+
+    public static SoulSkill GetSoulSkill(int id)
+    {
+        if (SoulSkillDict.TryGetValue(id, out SoulSkill skill))
+        {
+            return skill;
+        }
+
+        Debug.LogError($"Key not found [SoulSkill] {id}");
+
+        return null;
     }
     #endregion
 
