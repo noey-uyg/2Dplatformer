@@ -44,7 +44,7 @@ public class SoulStone : InteractableStone
         if (_soulInfos.Count == 0)
             return;
 
-        var filtered = _soulInfos.FindAll(r => r.id != PlayerData.CurrentSoul?.id);
+        var filtered = _soulInfos.FindAll(r => r.id != _currentSoul?.id);
 
         if (filtered.Count == 0)
             filtered = _soulInfos;
