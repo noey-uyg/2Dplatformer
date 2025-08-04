@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -281,6 +282,10 @@ public class DataManager : MonoBehaviour
         return null;
     }
 
+    public static List<JopInfo> GetAllJopInfos()
+    {
+        return JopInfoDict.Values.ToList();
+    }
     #endregion
 
     #region JopSkill
@@ -677,6 +682,11 @@ public class DataManager : MonoBehaviour
         Debug.LogError($"Key not found [SoulInfo] {id}");
 
         return null;
+    }
+
+    public static List<SoulInfo> GetAllSoulInfos()
+    {
+        return SoulInfoDict.Values.ToList();
     }
     #endregion
 
