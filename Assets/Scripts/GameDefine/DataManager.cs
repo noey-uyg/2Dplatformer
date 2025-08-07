@@ -588,6 +588,16 @@ public class DataManager : MonoBehaviour
             }
         }
     }
+
+    public static List<MapInfo> GetAllMaps()
+    {
+        return MapInfoDict.Values.ToList();
+    }
+
+    public static MapInfo GetMap(int mapID)
+    {
+        return MapInfoDict[mapID];
+    }
     #endregion
 
     #region MonsterSpawn

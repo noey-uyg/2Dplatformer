@@ -17,8 +17,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        InputKey();
+    }
+
+    private void InputKey()
+    {
         Move();
-        
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();
