@@ -11,6 +11,6 @@ public class HiddenPortal : InteractablePortal
         if (mapInfo == null)
             return;
 
-        MapManager.Instance.LoadMapPrefab(mapInfo);
+        MapManager.Instance.LoadMap(mapInfo);
     }
 }

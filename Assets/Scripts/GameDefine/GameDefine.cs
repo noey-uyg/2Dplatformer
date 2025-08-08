@@ -156,7 +156,7 @@ public static class GameDefine
     /// </summary>
     public enum MapType
     {
-        None,
+        Start = 0,  // Ω√¿€ ∏ 
         Normal = 1, // ¿œπ› ∏ 
         Hidden = 2, // »˜µÁ ∏ 
         Boss = 3,   // ∫∏Ω∫ ∏ 

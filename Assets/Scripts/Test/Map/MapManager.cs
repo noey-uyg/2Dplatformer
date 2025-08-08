@@ -10,11 +10,19 @@ public class MapManager : DontDestroySingleton<MapManager>
     private int _clearedStageMaps;
     private bool _hiddenMapVisited;
 
-    private List<MapInfo> _allMaps;
-    private List<MapInfo> _normalMaps;
+    private List<MapInfo> _allMaps = new List<MapInfo>();
+    private List<MapInfo> _normalMaps = new List<MapInfo>();
     private MapInfo _hiddenMap;
     private MapInfo _bossMap;
     private MapInfo _shopMap;
+    private BaseMap _currentMap;
+
+    public bool HiddenMapVisited { get { return _hiddenMapVisited; } }
+    public int CurrentStage {  get { return _currentStageID; } }
+    public BaseMap CurrentMap { get { return _currentMap; } }
+    public MapInfo HiddenMap { get { return _hiddenMap; } }
+    public MapInfo ShopMap { get { return _shopMap; } }
+    public MapInfo BossMap { get { return _bossMap; } }
 
     public void InitStage(int stageID)
     {
@@ -35,10 +43,6 @@ public class MapManager : DontDestroySingleton<MapManager>
 
     public MapInfo GetNextRandomMap()
     {
-        // 시작 맵 처리
-        if (_clearedStageMaps == 0 && _currentStageID == 1 && !_hiddenMapVisited)
-            return _allMaps.Find(r => r.mapType == 0);
-
         if(_clearedStageMaps < 4)
         {
             var available = _normalMaps.Where(r => !_usedMaps.Contains(r.mapID)).ToList();
@@ -69,6 +73,30 @@ public class MapManager : DontDestroySingleton<MapManager>
 
         _hiddenMapVisited = true;
         return _hiddenMap;
+    }
+
+    public void LoadMap(MapInfo map)
+    {
+        if (_currentMap != null)
+            Destroy(_currentMap.gameObject);
+
+        var prefab = LoadMapPrefab(map);
+        if(prefab == null)
+        {
+            Debug.LogError("프리팹이 존재하지 않음");
+            return;
+        }
+
+        var newMapObj = Instantiate(prefab);
+        _currentMap = newMapObj.GetComponent<BaseMap>();
+
+        if(_currentMap == null)
+        {
+            Debug.LogError("BaseMap 컴포넌트 존재하지 않음");
+            return;
+        }
+
+        _currentMap.InitMap();
     }
 
     public GameObject LoadMapPrefab(MapInfo map)
