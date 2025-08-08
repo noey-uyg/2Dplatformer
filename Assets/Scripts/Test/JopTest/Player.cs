@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private bool _isGrounded = false;
 
     private IInteractableStone _currentStone;
+    private IInteractablePortal _currentPortal;
 
     private void Update()
     {
@@ -22,28 +23,39 @@ public class Player : MonoBehaviour
 
     private void InputKey()
     {
-        Move();
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Jump();
+        { // 스킬
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                _skillManager.UseSkill(1);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                _skillManager.UseSkill(2);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _skillManager.UseSkill(1);
+        { // 상호작용
+            if (Input.GetKeyDown(KeyCode.F) && _currentStone != null)
+            {
+                _currentStone.OnSelect();
+            }
+            if (Input.GetKeyDown(KeyCode.R) && _currentStone != null)
+            {
+                _currentStone.OnReroll();
+            }
+            if(Input.GetKeyDown(KeyCode.UpArrow) && _currentPortal != null)
+            {
+                _currentPortal.OnEnterPortal();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _skillManager.UseSkill(2);
-        }
-        if (Input.GetKeyDown(KeyCode.F) && _currentStone != null)
-        {
-            _currentStone.OnSelect();
-        }
-        if (Input.GetKeyDown(KeyCode.R) && _currentStone != null)
-        {
-            _currentStone.OnReroll();
+
+        { // 움직임
+            Move();
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                Jump();
+            }
         }
     }
 
@@ -77,11 +89,17 @@ public class Player : MonoBehaviour
     {
         if(collision.TryGetComponent(out IInteractableStone stone))
             _currentStone = stone;
+
+        if(collision.TryGetComponent(out IInteractablePortal portal))
+            _currentPortal = portal;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.TryGetComponent(out IInteractableStone stone) && _currentStone == stone)
             _currentStone = null;
+
+        if(collision.TryGetComponent(out IInteractablePortal portal) && _currentPortal == portal)
+            _currentPortal = null;
     }
 }

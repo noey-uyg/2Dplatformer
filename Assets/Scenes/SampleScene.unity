@@ -1612,6 +1612,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673200262}
   m_CullTransparentMesh: 1
+--- !u!1 &833980770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8555592473438003150, guid: 4702ec5ca836e914db1056b210a5cd1b, type: 3}
+  m_PrefabInstance: {fileID: 8555592473501360889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &833980775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833980770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994d61e8b6257964792b48699f3a9ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &885981078
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,5 +3300,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map_Stage1_1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8555592473438003150, guid: 4702ec5ca836e914db1056b210a5cd1b, type: 3}
+      propertyPath: m_Name
+      value: NormalPortal
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8555592473438003136, guid: 4702ec5ca836e914db1056b210a5cd1b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4702ec5ca836e914db1056b210a5cd1b, type: 3}

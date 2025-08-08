@@ -1,31 +1,74 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapManager : DontDestroySingleton<MapManager>
 {
     private List<int> _usedMaps = new List<int>();
     private int _currentStageID = 1;
-    private List<MapInfo> _allMaps => DataManager.GetAllMaps();
+    private int _clearedStageMaps;
+    private bool _hiddenMapVisited;
+
+    private List<MapInfo> _allMaps;
+    private List<MapInfo> _normalMaps;
+    private MapInfo _hiddenMap;
+    private MapInfo _bossMap;
+    private MapInfo _shopMap;
 
     public void InitStage(int stageID)
     {
         _currentStageID = stageID;
+        _clearedStageMaps = 0;
+        _hiddenMapVisited = false;
         _usedMaps.Clear();
+        _allMaps.Clear();
+
+        _allMaps = DataManager.GetAllMaps()
+                    .FindAll(r => r.stageID == stageID);
+
+        _normalMaps = _allMaps.FindAll(r => r.mapType == 1);
+        _hiddenMap = _allMaps.Find(r => r.mapType == 2);
+        _bossMap = _allMaps.Find(r => r.mapType == 3);
+        _shopMap = _allMaps.Find(r => r.mapType == 4);
     }
 
     public MapInfo GetNextRandomMap()
     {
-        var candidates = _allMaps.FindAll(r => r.stageID == _currentStageID && !_usedMaps.Contains(r.mapID));
+        // ½ÃÀÛ ¸Ê Ã³¸®
+        if (_clearedStageMaps == 0 && _currentStageID == 1 && !_hiddenMapVisited)
+            return _allMaps.Find(r => r.mapType == 0);
 
-        Debug.Log(candidates.Count);
-        if (candidates.Count == 0)
+        if(_clearedStageMaps < 4)
+        {
+            var available = _normalMaps.Where(r => !_usedMaps.Contains(r.mapID)).ToList();
+            var selected = available[Random.Range(0, available.Count)];
+            _usedMaps.Add(selected.mapID);
+            _clearedStageMaps++;
+            return selected;
+        }
+
+        if(_clearedStageMaps == 4)
+        {
+            _clearedStageMaps++;
+            return _bossMap;
+        }
+
+        if(_clearedStageMaps == 5)
+        {
+            return _shopMap;
+        }
+
+        return null;
+    }
+
+    public MapInfo GetHiddenMap()
+    {
+        if (_hiddenMapVisited || _hiddenMap == null)
             return null;
 
-        MapInfo selected = candidates[Random.Range(0, candidates.Count)];
-        _usedMaps.Add(selected.mapID);
-
-        return selected;
+        _hiddenMapVisited = true;
+        return _hiddenMap;
     }
 
     public GameObject LoadMapPrefab(MapInfo map)
