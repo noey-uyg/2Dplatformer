@@ -39,7 +39,7 @@ public class MapManager : DontDestroySingleton<MapManager>
         _allMaps.Clear();
 
         _allMaps = DataManager.GetAllMaps()
-                    .FindAll(r => r.stageID == stageID);
+                    .FindAll(r => r.stageID == stageID || r.mapType == 4);
 
         _normalMaps = _allMaps.FindAll(r => r.mapType == 1);
         _hiddenMap = _allMaps.Find(r => r.mapType == 2);

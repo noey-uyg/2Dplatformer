@@ -13,4 +13,5 @@ map_id,stage_id,type,map_prefab_name,is_hidden,path
 2005,2,1,Map_Stage2_5,0,Prefabs/Map/Map_Stage2
 2010,2,2,Map_Stage2_Hidden,1,Prefabs/Map/Map_Stage2
 2100,2,3,Map_Stage2_Boss,0,Prefabs/Map/Map_Stage2
-1000,0,0,Map_Start,0,Prefabs/Map/Map_Start
+101,0,0,Map_Start,0,Prefabs/Map/Map_Common
+102,0,4,Map_Shop,0,Prefabs/Map/Map_Common
