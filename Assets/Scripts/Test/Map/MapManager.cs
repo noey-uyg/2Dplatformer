@@ -24,6 +24,12 @@ public class MapManager : DontDestroySingleton<MapManager>
     public MapInfo ShopMap { get { return _shopMap; } }
     public MapInfo BossMap { get { return _bossMap; } }
 
+    public void InitStartMap(BaseMap map)
+    {
+        _currentMap = map;
+        _currentStageID = 0;
+    }
+
     public void InitStage(int stageID)
     {
         _currentStageID = stageID;

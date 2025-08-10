@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb;
 
     private float _moveSpeed = 5f;
-    private float _jumpForce = 5f;
+    private float _jumpForce = 10f;
     private bool _isGrounded = false;
 
     private IInteractableStone _currentStone;

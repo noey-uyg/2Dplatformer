@@ -20,7 +20,7 @@ public class BaseMap : MonoBehaviour
 
     protected void SpawnPlayer()
     {
-        var player = PlayerController.Instance;
+        var player = PlayerController.Instance.GetPlayer();
         player.transform.position = _playerSpawnPoint.position;
     }
 

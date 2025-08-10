@@ -7,6 +7,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private Player _player;
     [SerializeField] private SkillManager _skillManager;
 
+    public Player GetPlayer() { return _player; }
     /// <summary>
     /// 직업 설정
     /// </summary>

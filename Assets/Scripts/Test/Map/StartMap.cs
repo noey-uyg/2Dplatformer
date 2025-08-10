@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class StartMap : BaseMap
 {
+    private void Start()
+    {
+        InitMap();
+    }
+
     public override void InitMap()
     {
         base.InitMap();
         Debug.Log("시작 맵 - 게임 초기 설정");
+        MapManager.Instance.InitStartMap(this);
     }
 
     public void TryStartStage()
