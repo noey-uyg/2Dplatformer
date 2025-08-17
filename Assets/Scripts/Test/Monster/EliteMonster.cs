@@ -18,7 +18,7 @@ public class EliteMonster : MonsterBase
         _moveSpeed *= 1.25f;
     }
 
-    public override void PerFormAttack()
+    public override void PerformAttack()
     {
         Debug.Log("Elite Atk");
     }

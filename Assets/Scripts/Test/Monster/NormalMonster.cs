@@ -17,7 +17,7 @@ public class NormalMonster : MonsterBase
         _baseAtkCoolTime = data.atkCD;
     }
 
-    public override void PerFormAttack()
+    public override void PerformAttack()
     {
         Debug.Log("Normal Atk");
     }

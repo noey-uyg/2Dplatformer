@@ -18,7 +18,7 @@ public class BossMonster : MonsterBase
         _moveSpeed *= 1.25f;
     }
 
-    public override void PerFormAttack()
+    public override void PerformAttack()
     {
         Debug.Log("Boss Atk");
     }
