@@ -13,7 +13,7 @@ public class MonsterAttackState : IMonsterState
         _monster = owner;
         _lastAttackTime = Time.time;
         _atkCoolTime = _monster.BaseAtkCoolTime;
-        //_monster.PerformAttack();
+        _monster.PerformAttack();
     }
 
     public void Enter()
@@ -25,7 +25,7 @@ public class MonsterAttackState : IMonsterState
     {
         if(Time.time >= _lastAttackTime + _atkCoolTime)
         {
-            //_monster.StateMachine.ChangeState(new MonsterIdleState(_monster));
+            _monster.StateMachine.ChangeState(new MonsterIdleState(_monster));
         }
     }
 

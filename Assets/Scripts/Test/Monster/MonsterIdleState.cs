@@ -11,15 +11,14 @@ public class MonsterIdleState : IMonsterState
 
     public void Enter()
     {
-        _idleTime = UnityEngine.Random.Range(1f, 3f);
+        _idleTime = Random.Range(1f, 3f);
     }
 
     public void Update()
     {
         _idleTime -= Time.deltaTime;
-        //if (_idleTime < 0f)
-            //_monster.StateMachine.ChangeState(new MonsterMoveState(_monster));
-
+        if (_idleTime < 0f)
+            _monster.StateMachine.ChangeState(new MonsterMoveState(_monster));
     }
 
     public void Exit() { }

@@ -15,13 +15,13 @@ public class MonsterMoveState : IMonsterState
 
     public void Update()
     {
-        // 이동
+        //이동
 
-        // 플레이어 사정거리 이내 접근 시 공격
-        //if (_monster.CheckPlayerInRange())
-        //{
-        //    _monster.StateMachine.ChagneState(new MonsterAttackState(_monster));
-        //}
+        //플레이어 사정거리 이내 접근 시 공격
+        if (_monster.CheckPlayerInRange())
+        {
+            _monster.StateMachine.ChangeState(new MonsterAttackState(_monster));
+        }
     }
 
     public void Exit()

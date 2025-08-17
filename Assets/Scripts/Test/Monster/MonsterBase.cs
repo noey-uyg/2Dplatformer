@@ -38,7 +38,7 @@ public abstract class MonsterBase : MonoBehaviour
     }
 
     public abstract void Initialize(MonsterInfo data);
-    public abstract void PerFormAttack();
+    public abstract void PerformAttack();
 
     public virtual bool CheckPlayerInRange()
     {
@@ -55,6 +55,6 @@ public abstract class MonsterBase : MonoBehaviour
 
     public virtual void OnDead()
     {
-        //MonsterPool.Instance.ReleaseMonster(this);
+        MonsterPool.Instance.ReleaseMonster(this);
     }
 }

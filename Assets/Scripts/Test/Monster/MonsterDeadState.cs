@@ -10,7 +10,7 @@ public class MonsterDeadState : IMonsterState
 
     public void Enter()
     {
-        //_monster.OnDead();
+        _monster.OnDead();
     }
 
     public void Exit() { }
