@@ -458,6 +458,18 @@ public class DataManager : MonoBehaviour
             }
         }
     }
+
+    public static MonsterInfo GetMonsterData(int id)
+    {
+        if (MonsterInfoDict.TryGetValue(id, out MonsterInfo monsterData))
+        {
+            return monsterData;
+        }
+
+        Debug.LogError($"Key not found [SoulInfo] {id}");
+
+        return null;
+    }
     #endregion
 
     #region MonsterPattern
@@ -638,6 +650,22 @@ public class DataManager : MonoBehaviour
                 Debug.LogWarning($"MapInfo 중복된 키 : {key} (줄 {i + 1})");
             }
         }
+    }
+
+    public static List<MonsterSpawn> GetAllMapSpawnDatas()
+    {
+        return MonsterSpawnDict.Values.ToList();
+    }
+
+    public static List<MonsterSpawn> GetMapSpawnData(int mapID)
+    {
+        List<MonsterSpawn> list = new List<MonsterSpawn>();
+        foreach(var v in  MonsterSpawnDict.Values)
+        {
+            if(v.mapID == mapID)
+                list.Add(v);
+        }
+        return list;
     }
     #endregion
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public abstract class MonsterBase : MonoBehaviour
 
     private MonsterStateMachine _stateMachine;
 
+    public event Action<MonsterBase> OnDeath;
+    
     public int MonsterID { get { return _monsterID; } }
     public MonsterType MonType { get { return _monsterType; } }
     public DamageType DamType { get { return _attackType; } }
@@ -49,12 +52,13 @@ public abstract class MonsterBase : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         _baseHP -= damage;
-        if (_baseHP < 0)
+        if (_baseHP <= 0)
             StateMachine.ChangeState(new MonsterDeadState(this));
     }
 
     public virtual void OnDead()
     {
+        OnDeath?.Invoke(this);
         MonsterPool.Instance.ReleaseMonster(this);
     }
 }
