@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSpawnManager : MonoBehaviour
+public class MonsterSpawnManager : DontDestroySingleton<MonsterSpawnManager>
 {
     [System.Serializable]
     public class SpawnPoint
@@ -12,17 +12,18 @@ public class MonsterSpawnManager : MonoBehaviour
     }
 
     [SerializeField] private int _currentMapID;
-    [SerializeField] private List<SpawnPoint> _spawnPoints;
+    [SerializeField] private Transform[] _spawnPoints;
 
     private List<MonsterSpawn> _spawnDataList;
     private List<MonsterBase> _aliveMonsters = new List<MonsterBase>();
     private BaseMap _curMap;
 
-    public void Initialize(List<MonsterSpawn> spawnData, BaseMap curMap)
+    public void Initialize(List<MonsterSpawn> spawnData, BaseMap curMap, Transform[] points)
     {
         _currentMapID = curMap.MapID;
         _curMap = curMap;
         _spawnDataList = spawnData.FindAll(r => r.mapID == _currentMapID);
+        _spawnPoints = points;
     }
 
     public void SpawnAll()
@@ -31,7 +32,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
         foreach (var v in _spawnDataList)
         {
-            var point = _spawnPoints.Find(r => r.spawnID == v.spawnID)?.Point;
+            var point = _spawnPoints[v.spawnID];
             if(point == null)
             {
                 Debug.LogWarning($"Spawn point {v.spawnID} not found");

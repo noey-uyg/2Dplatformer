@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class BaseMap : MonoBehaviour
 {
-    [SerializeField] private MonsterSpawnManager _monsterSpawnManager;
-
     [SerializeField] protected int _mapID;
     [SerializeField] protected Transform _playerSpawnPoint;
     [SerializeField] protected List<InteractablePortal> _portals;
@@ -22,11 +20,8 @@ public class BaseMap : MonoBehaviour
         SpawnPlayer();
         SetPortalsActive(false);
 
-        if (_monsterSpawnManager == null)
-            GetComponent<MonsterSpawnManager>();
-
-        _monsterSpawnManager.Initialize(DataManager.GetMapSpawnData(_mapID), this);
-        _monsterSpawnManager.SpawnAll();
+        MonsterSpawnManager.Instance.Initialize(DataManager.GetMapSpawnData(_mapID), this, _monsterSpawnPoint);
+        MonsterSpawnManager.Instance.SpawnAll();
     }
 
     protected void SpawnPlayer()
