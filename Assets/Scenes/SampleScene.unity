@@ -555,7 +555,27 @@ MonoBehaviour:
   _mapID: 1001
   _playerSpawnPoint: {fileID: 2130795179}
   _portals: []
-  _monsterSpawnPoint: []
+  _monsterSpawnPoint:
+  - {fileID: 1145337626}
+  - {fileID: 584920402}
+  - {fileID: 1604833}
+  - {fileID: 1043116159}
+  - {fileID: 1467359523}
+  - {fileID: 450299413}
+  - {fileID: 704811291}
+  - {fileID: 1928558619}
+  - {fileID: 581826613}
+  - {fileID: 1369190186}
+  - {fileID: 307846657}
+  - {fileID: 479826658}
+  - {fileID: 260016034}
+  - {fileID: 359325064}
+  - {fileID: 646252900}
+  - {fileID: 1811874143}
+  - {fileID: 859125597}
+  - {fileID: 1572719673}
+  - {fileID: 1218487009}
+  - {fileID: 1484788295}
   _hiddenSpawnPosition: {fileID: 755568142}
 --- !u!4 &302929476
 Transform:
@@ -1025,6 +1045,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &440274184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440274185}
+  - component: {fileID: 440274186}
+  m_Layer: 0
+  m_Name: MonsterPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440274185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440274184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1957431894}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &440274186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440274184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5a87037393b4d4f9067ae6666747f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterPrefabs:
+  - {fileID: 1374872613312389855, guid: d14f6e03647b4b644b32554a84eb24ff, type: 3}
+  - {fileID: 1659276892509035074, guid: ff3448bc3cd06fa4a99f8274a5ae383b, type: 3}
+  - {fileID: 8025553480678153231, guid: 91c3408c5088ce34c8875b18cc89bd08, type: 3}
+  - {fileID: 3075833606705620259, guid: 8835ef033bc393240919c31a1a2b62bb, type: 3}
 --- !u!1 &450299412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4650,6 +4719,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1035491379}
+  - {fileID: 1957431894}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4825,6 +4895,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 531665072}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1957431893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957431894}
+  m_Layer: 0
+  m_Name: Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1957431894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957431893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 440274185}
+  m_Father: {fileID: 1734227088}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130795178
 GameObject:

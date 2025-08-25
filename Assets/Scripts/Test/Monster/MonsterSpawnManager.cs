@@ -46,8 +46,10 @@ public class MonsterSpawnManager : DontDestroySingleton<MonsterSpawnManager>
                 monster.Initialize(DataManager.GetMonsterData(v.monsterID));
 
                 monster.OnDeath += HandleMonsterDeath;
+                monster.gameObject.SetActive(true);
                 _aliveMonsters.Add(monster);
             }
+            Debug.Log(monster);
         }
     }
 

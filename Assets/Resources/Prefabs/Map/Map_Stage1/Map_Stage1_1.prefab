@@ -625,7 +625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3173786629062596123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: -4.35, z: 0}
+  m_LocalPosition: {x: -4.81, y: -3.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1404,11 +1404,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0894c54eb3d3c4387285b839ca4d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterSpawnManager: {fileID: 0}
   _mapID: 1001
   _playerSpawnPoint: {fileID: 3173786629386911078}
   _portals: []
-  _monsterSpawnPoint: []
+  _monsterSpawnPoint:
+  - {fileID: 3173786629874681230}
+  - {fileID: 3173786630437725736}
+  - {fileID: 3173786629386770667}
+  - {fileID: 3173786629413997175}
+  - {fileID: 3173786628683096998}
+  - {fileID: 3173786629442431736}
+  - {fileID: 3173786629753467202}
+  - {fileID: 3173786629890514990}
+  - {fileID: 3173786629571586711}
+  - {fileID: 3173786629609877022}
+  - {fileID: 3173786629670437060}
+  - {fileID: 3173786628737754001}
+  - {fileID: 3173786628767318398}
+  - {fileID: 3173786629062596124}
+  - {fileID: 3173786628861992771}
+  - {fileID: 3173786629817498250}
+  - {fileID: 3173786629360711933}
+  - {fileID: 3173786628660921846}
+  - {fileID: 3173786629948973908}
+  - {fileID: 3173786628757110115}
   _hiddenSpawnPosition: {fileID: 3173786628766959704}
 --- !u!1 &3173786629948973907
 GameObject:

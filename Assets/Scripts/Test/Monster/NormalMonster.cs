@@ -15,6 +15,8 @@ public class NormalMonster : MonsterBase
         _baseHP = data.baseHp;
         _baseAtk = data.baseAtk;
         _baseAtkCoolTime = data.atkCD;
+
+        base.Initialize(data);
     }
 
     public override void PerformAttack()

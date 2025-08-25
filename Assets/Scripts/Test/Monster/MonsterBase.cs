@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class MonsterBase : MonoBehaviour
 {
-    protected int _monsterID;
+    [SerializeField] protected int _monsterID;
     protected string _name;
     protected MonsterType _monsterType;
     protected DamageType _attackType;
@@ -17,6 +17,7 @@ public abstract class MonsterBase : MonoBehaviour
     protected float _moveSpeed = 3f;
 
     private MonsterStateMachine _stateMachine;
+    private IMonsterMovement _movement;
 
     public event Action<MonsterBase> OnDeath;
     
@@ -37,10 +38,26 @@ public abstract class MonsterBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        StateMachine.Update();
+        _stateMachine?.Update();
+        _movement?.Move();
     }
 
-    public abstract void Initialize(MonsterInfo data);
+    public virtual void Initialize(MonsterInfo data)
+    {
+        switch (_moveType)
+        {
+            case MonsterMoveType.Ground:
+                _movement = new GroundMovement(this);
+                break;
+            case MonsterMoveType.Fly:
+                _movement = new FlyMovement(this);
+                break;
+            case MonsterMoveType.Fix:
+                _movement = new FixedMovement(this);
+                break;
+        }
+    }
+
     public abstract void PerformAttack();
 
     public virtual bool CheckPlayerInRange()

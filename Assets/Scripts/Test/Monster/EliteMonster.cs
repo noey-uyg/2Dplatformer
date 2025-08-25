@@ -16,6 +16,8 @@ public class EliteMonster : MonsterBase
         _baseAtk = data.baseAtk;
         _baseAtkCoolTime = data.atkCD;
         _moveSpeed *= 1.25f;
+
+        base.Initialize(data);
     }
 
     public override void PerformAttack()

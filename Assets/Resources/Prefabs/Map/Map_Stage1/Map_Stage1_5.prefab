@@ -1515,11 +1515,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0894c54eb3d3c4387285b839ca4d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterSpawnManager: {fileID: 0}
   _mapID: 1005
   _playerSpawnPoint: {fileID: 4859043319292986329}
   _portals: []
-  _monsterSpawnPoint: []
+  _monsterSpawnPoint:
+  - {fileID: 4859043319848853645}
+  - {fileID: 4859043319371957922}
+  - {fileID: 4859043319555645809}
+  - {fileID: 4859043321037733753}
+  - {fileID: 4859043320137868812}
+  - {fileID: 4859043319947248329}
+  - {fileID: 4859043321110438662}
+  - {fileID: 4859043320312059947}
+  - {fileID: 4859043320868948393}
+  - {fileID: 4859043319267442328}
+  - {fileID: 4859043320542587734}
+  - {fileID: 4859043320136873027}
+  - {fileID: 4859043320328315919}
+  - {fileID: 4859043320259761862}
+  - {fileID: 4859043320625508136}
+  - {fileID: 4859043319898246277}
+  - {fileID: 4859043319853105748}
+  - {fileID: 4859043319242911519}
+  - {fileID: 4859043319409865059}
+  - {fileID: 4859043320249739490}
   _hiddenSpawnPosition: {fileID: 4859043320307570667}
 --- !u!1 &4859043321037733754
 GameObject:
