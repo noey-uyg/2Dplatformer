@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class MonsterBase : MonoBehaviour
 {
     [SerializeField] protected int _monsterID;
+    [SerializeField] protected Transform _frontCheck;
     protected string _name;
     protected MonsterType _monsterType;
     protected DamageType _attackType;
@@ -18,6 +19,9 @@ public abstract class MonsterBase : MonoBehaviour
 
     private MonsterStateMachine _stateMachine;
     private IMonsterMovement _movement;
+    private float _detectionRange = 3f;
+    private float _edgeCheckDistance = 0.1f;
+    private Transform _transform;
 
     public event Action<MonsterBase> OnDeath;
     
@@ -30,10 +34,16 @@ public abstract class MonsterBase : MonoBehaviour
     public float BaseAtk { get { return _baseAtk; } }
     public float BaseAtkCoolTime {  get { return _baseAtkCoolTime; } }
     public MonsterStateMachine StateMachine { get {  return _stateMachine; } }
+    public float DetectionRange { get { return _detectionRange; } }
+    public float EdgeCheckDistance { get { return _edgeCheckDistance; } }
+    public Transform FrontCheck {  get { return _frontCheck; } }
+    public float MoveSpeed { get { return _moveSpeed; } }
+    public Transform GetTransform {  get { return _transform; } }
 
     protected virtual void Awake()
     {
         _stateMachine = new MonsterStateMachine(this);
+        _transform = GetComponent<Transform>();
     }
 
     protected virtual void Update()
@@ -62,8 +72,7 @@ public abstract class MonsterBase : MonoBehaviour
 
     public virtual bool CheckPlayerInRange()
     {
-        // 거리 계산
-        return Vector2.Distance(transform.position, Vector2.zero) < 3f;
+        return Vector2.Distance(transform.position, Vector2.zero) < _detectionRange;
     }
 
     public virtual void TakeDamage(float damage)
@@ -77,5 +86,15 @@ public abstract class MonsterBase : MonoBehaviour
     {
         OnDeath?.Invoke(this);
         MonsterPool.Instance.ReleaseMonster(this);
+    }
+
+    public void MonsterMove(Vector3 moveDir)
+    {
+        _transform.position += moveDir * _moveSpeed * Time.deltaTime;
+    }
+
+    public void Flip()
+    {
+        _transform.localScale *= -1;
     }
 }

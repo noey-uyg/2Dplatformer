@@ -20,6 +20,7 @@ public class MonsterMoveState : IMonsterState
         //플레이어 사정거리 이내 접근 시 공격
         if (_monster.CheckPlayerInRange())
         {
+            Debug.Log("사정거리 이내");
             _monster.StateMachine.ChangeState(new MonsterAttackState(_monster));
         }
     }

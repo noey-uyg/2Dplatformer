@@ -49,7 +49,6 @@ public class MonsterSpawnManager : DontDestroySingleton<MonsterSpawnManager>
                 monster.gameObject.SetActive(true);
                 _aliveMonsters.Add(monster);
             }
-            Debug.Log(monster);
         }
     }
 
